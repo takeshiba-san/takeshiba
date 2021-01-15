@@ -1,12 +1,252 @@
 <!DOCTYPE html>
 <html lang="ja">
+
+
+<style type="text/css">
+html, body {
+  padding: 0;
+  margin: 0;
+}
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+html {
+  line-height: 1.6;
+  font-size: 16px;
+  font-family: "BIZ UDP明朝"
+}
+body {
+  color: #333;
+  background-color: white;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+p {
+  margin:0 ;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  opacity: 0.7;
+}
+
+
+#container {
+ min-width: 980px;
+}
+.l-content-fixed {
+ width: 980px;
+ margin:0 auto;
+}
+.l-content-expanded {
+  width: auto;
+  margin: 0;
+}
+.l-multicolumn {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  margin: 50px -20px;
+}
+.l-3column > .l-column {
+  width: calc(100% / 3);
+  padding: 0 20px;
+}
+.l-2column > .l-column {
+  width: calc(100% / 2);
+  padding: 0 20px;
+}
+
+
+.btn{
+  display: inline-block;
+  padding: 0.6em 1em;
+  border: 2px solid #333;
+  border-radius: 2em;
+  box-shadow: 3px 4px rgba(51, 51, 51, 0.15);
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn_highlighted {
+  border: none;
+  background-color: #202f55;
+  box-shadow: none;
+  color: white;
+  font-weight: bold;
+}
+.btn_menuitem {
+  padding: 0.3em 1em;
+}
+
+
+.footer {
+  background-color: black;
+}
+.footer-content {
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1;
+  color: white;
+}
+.footer-copy small {
+  font-size: 1rem;
+  font-family: "BIZ UDP明朝", sans-serif;
+}
+.footer-totop {
+  position: absolute;
+  top: -32px;
+  right: 20px;
+  width: 64px;
+  height: 64px;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 50%;
+  -webkit-filter: drop-shadow(3px 4px 0 rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(3px 4px 0 rgba(0, 0, 0, 0.15));
+  cursor: pointer;
+}
+.fotter-totop::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-45deg) translate(-25%, -50%);
+  transform: rotate(-45deg) translate(-25%, -50%);
+}
+
+
+.header {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.header-logo {
+  margin: 0;
+  font-size: 2em;
+  line-height: 1;
+}
+.header-logo img {
+  width: 2em;
+  height: 100%;
+}
+
+
+.hero {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  height: 520px;
+  background: url("./images/万世橋.jpg") center center;
+  background-size: cover;
+}
+.hero-copy {
+  margin: 0;
+  font-size: 25px;
+  text-align:center;
+  color: white;
+}
+
+
+.nav-menu{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  font-size: 1rem;
+}
+.nav-menu-item + .nav-menu-item {
+  margin-left: 2em;
+}
+.nav-menu-item a{
+  color: #333;
+  font-weight: bold;
+}
+.nav-menu-item .btn_highlighted{
+  color: white;
+}
+
+
+.section {
+padding: 60px 0;
+font-size: 1rem;
+text-align: center;
+}
+.section-header {
+  margin: 0 0 2.5em 0;
+  line-height: 1.2;
+}
+.section-title {
+  margin: 0;
+  font-family: "BIZ UDP明朝", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+}
+.section-subtitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.section-item-symbol {
+  height: 120px;
+}
+.section-item-tytle {
+  margin: 1em 0 0.5em 0;
+  font-size: 1.5em;
+  text-align: center;
+}
+.section-item-description {
+  margin: 0;
+  font-size: 1em;
+  text-align: left;
+}
+.section .btn {
+  padding: .75rem 1rem;
+  width: 15rem;
+  font-size: 1em;
+}
+.section-map {
+  width: 100%;
+  margin-top: 5em;
+}
+
+
+</style>
+
+
 <head>
  <meta charset="UTF-8">
  <title>たけしは゛</title>
  <meta name="description" content="たけしは゛のホームページです。">
- <link rel="stylesheet" href="./css/base/default.css">
- <link rel="stylesheet" href="./css/layout/default.css">
- <link rel="stylesheet" href="./css/module/modules.css">
+ <link rel="stylesheet" href=".css/base/default.css">
+ <link rel="stylesheet" href=".css/layout/default.css">
+ <link rel="stylesheet" href=".css/module/modules.css">
 </head>
 <body>
 <div id="container">
@@ -37,7 +277,7 @@
   <!-- 野球についてのあれこれ -->
   <section class="l-content-fixed section">
     <header class="section-header">
-      <h2 class="section-title">Baseball</h2>
+      <h2 class="section-title">baseball</h2>
       <p class="section-subtitle">野球についてのあれこれ</p>
     </header>
     <div class="l-multicolumn l-3column">
@@ -51,14 +291,15 @@
         </p>
       </section>
       <section class="l-column">
+        <a href="./baseball.html">
         <header>
           <img class="section-item-symbol" src="./images/baseball.svg" alt="野球のルールのアイコン">
           <h3 class="section-item-title">野球のルール</h3>
         </header>
         <p class="section-item-description">
-          観戦しようと思っているあなたに。
-          <br>初心者向け。
+          観戦しようと思っているあなたに。初心者向け。
         </p>
+        </a>
       </section>
       <section class="l-column">
         <header>
@@ -74,8 +315,15 @@
   <!-- ブログ -->
   <section class="l-content-fixed section">
     <header class="section-header">
-      <h2 class="section-title">ブログ</h2>
-      <p class="section-subtitle">拠点B</p>
+      <h2 class="section-title">blog</h2>
+      <p class="section-subtitle">ブログ</p>
+      <section class="l-column">
+        <a href="https://hatoba.hatenadiary.jp">
+        <header>
+          <img class="section-item-symbol" src="./images/lighthouse.svg" alt="ブログのアイコン">
+        </header>
+      </a>
+      </section>
     </header>
   </section>
  </main>
