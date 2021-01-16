@@ -35,6 +35,31 @@ a:hover {
 }
 
 
+
+@media (max-width: 1024px) {
+  .l-content-fixed  {
+    padding: 0 40px;
+  }
+}
+@media (max-width: 600px) {
+  .l-content-fixed,
+  .l-main {
+    width: auto;
+  }
+  .l-main{
+   max-width: 100%;
+  }
+ .l-main {
+   margin-right: 0;
+  }
+ .l-content-fixed {
+   padding: 0 1rem;
+  }
+ #content {
+   display: block;
+  }
+}
+
 #container {
  min-width: 980px;
 }
@@ -61,6 +86,7 @@ a:hover {
   width: calc(100% / 2);
   padding: 0 20px;
 }
+
 
 
 .btn{
@@ -131,8 +157,17 @@ a:hover {
   -webkit-transform: rotate(-45deg) translate(-25%, -50%);
   transform: rotate(-45deg) translate(-25%, -50%);
 }
+@media (max-width: 900px) {
+  .footer-totop {
+    top: -22px;
+    width: 45px;
+    height: 45px;
+  }
+}
 
 
+
+  
 .header {
   display: -webkit-flex;
   display: flex;
@@ -153,6 +188,13 @@ a:hover {
   width: 2em;
   height: 100%;
 }
+
+@media (max-width: 960px) {
+  .header-logo img {
+    width: 4rem;
+  }
+}
+
 
 
 .hero {
@@ -191,6 +233,61 @@ a:hover {
 .nav-menu-item .btn_highlighted{
   color: white;
 }
+.hamburger-btn {
+  display: none;
+}
+@media (max-width: 960px) {
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    bottom: 0;
+    z-index: 1000;
+    display: block;
+    width: 80%;
+    padding: 1rem;
+    background-color: #fff;
+    transition: left 0.3s ease-out 0s;
+  }
+  .nav-menu-item + .nav-menu-item {
+    margin-left: 0;
+  }
+  .nav-menu-item a:not(.btn) {
+    display: block;
+    padding: 0.7rem;
+  }
+  .nav-menu-item:last-child {
+    margin-top: 0.7rem;
+  }
+  .nav-menu.is-active {
+    left: 0;
+  }
+  .header-menu-background {
+    display: block;
+    background-color: #333;
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease-out 0s;
+  }
+  .nav-menu.is-active + .header-menu-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+  }
+  .nav-menu.is-active + .header-menu-background + .hamburger-btn {
+    color: #fff;
+  }
+  .hamburger-btn {
+    position: relative;
+    display: block;
+    font-size: 1.5rem;
+    z-index: 999;
+  }
+}
+
 
 
 .section {
@@ -236,8 +333,71 @@ text-align: center;
   margin-top: 5em;
 }
 
-
 </style>
+  
+  
+  
+<script type="text/javascript">
+function smoothscroll(id, durationTime) {
+  var TIME_INTERVAL = 20;
+  var element = document.getElementById(id);
+  if ( !element ) return;
+  var ey = element.getBoundingClientRect().top;
+  var dy = ey*TIME_INTERVAL/durationTime;
+  var timer = setInterval (function().top{
+    scrollBy(0,dy); ey -= dy ;
+    if( direction*ey <= 0 ) {
+      clearInterval(timer);
+      element.scrollIntoView();
+    }
+  }, TIME_INTERVAL);
+}
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("totop-btn").addEventListener("click",
+function() {
+  smoothScroll("container",1000);
+},false;
+});
+
+
+var HamburgerMenu = function() {
+  this.hamburgerBtn = document.getElementById("js-hamburger-btn");
+  this.headerMenu = document.getElementById("js-header-menu");
+  this.headerMenuBg = document.getElementById("js-header-menu-background");
+  this.activeClass = "is-active";
+}
+HamburgerMenu.prototype = {
+  init: function(){
+    this.attachEvent();
+  },
+  open: function() {
+    this.headerMenu.classList.add(this.activeClass);
+    this.hamburgerBtn.classList.remove("fa-bars");
+    this.hamburgerBtn.classList.add("fa-times");
+  },
+  close: function() {
+    this.headerMenu.classList.remove(this.activeClass);
+    this.hamburgerBtn.classList.remove("fa-times");
+    this.hamburgerBtn.classList.add("fa-bars");
+  },
+  openAndClose: function() {
+    if (!this.headerMenu.classList.contains(this.activeClass)) {
+      this.open();      
+    } else {
+      this.close();
+    }
+  },
+  attachEvent: function() {
+    this.hamburgerBtn.addEventListener("click", this.openAndClose.bind(this), false);
+    this.headerMenuBg.addEventListener("click", this.openAndClose.bind(this), false);
+  }
+}
+document.addEventListener("DOMContentLoaded", function() {
+  var hamburger = new HamburgerMenu();
+  hamburger.init();
+});
+
+</script>
 
 
 <head>
@@ -247,6 +407,7 @@ text-align: center;
  <link rel="stylesheet" href=".css/base/default.css">
  <link rel="stylesheet" href=".css/layout/default.css">
  <link rel="stylesheet" href=".css/module/modules.css">
+ <script src="./js/hamburger-menu.js"></script> 
 </head>
 <body>
 <div id="container">
@@ -258,11 +419,13 @@ text-align: center;
    </a>
   </h1>
   <nav class="nav">
-    <ul class="nav-menu">
+    <ul class="nav-menu" id="js-header-menu">
       <li class="nav-menu-item"><a href="baseball.html">野球についてのあれこれ</a></li>
       <li class="nav-menu-item"><a href="hatoba.hatenablog.jp">ブログ</a></li>
       <li class="nav-menu-item"><a href="twitter.com/yakitate_envy">Twitter</a></li>
     </ul>
+    <div class="header-menu-background" id="js-header-menu-background"></div>
+    <i class="fas fa-bars hamburger-btn" id="js-hamburger-btn"></i>
   </nav>
  </header>
  <!-- main -->
