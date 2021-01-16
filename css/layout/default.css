@@ -1,3 +1,28 @@
+
+@media (max-width: 1024px) {
+  .l-content-fixed  {
+    padding: 0 40px;
+  }
+}
+@media (max-width: 600px) {
+  .l-content-fixed,
+  .l-main {
+    width: auto;
+  }
+  .l-main{
+   max-width: 100%;
+  }
+ .l-main {
+   margin-right: 0;
+  }
+ .l-content-fixed {
+   padding: 0 1rem;
+  }
+ #content {
+   display: block;
+  }
+}
+
 #container {
  min-width: 980px;
 }
