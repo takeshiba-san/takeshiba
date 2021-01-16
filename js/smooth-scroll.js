@@ -12,8 +12,8 @@ function smoothscroll(id, durationTime) {
     }
   }, TIME_INTERVAL);
 }
-document.addEventListenner("DOMContentLoaded", function(){
-  document.getElementById("totop-btn").addEventListenner("click",
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("totop-btn").addEventListener("click",
 function() {
   smoothScroll("container",1000);
 },false;
